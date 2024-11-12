@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MercuriusDriver, MercuriusDriverConfig } from '@nestjs/mercurius';
+import { TitheModule } from './tithe/tithe.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { MercuriusDriver, MercuriusDriverConfig } from '@nestjs/mercurius';
       autoSchemaFile: true,
       graphiql: true,
     }),
+    TitheModule,
   ],
   controllers: [AppController],
   providers: [AppService],
