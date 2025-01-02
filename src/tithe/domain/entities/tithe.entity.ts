@@ -12,7 +12,14 @@ export class Tithe {
   @Field(() => Float, { description: 'amount of tithe' })
   amount: number;
 
-  @Column({ type: 'date' })
-  @Field(() => Date, { description: 'date of tithe' })
-  date: Date;
+  @Column()
+  @Field(() => String, { description: 'date of tithe' })
+  date: string;
+
+  @Column({
+    type: 'timestamp with time zone',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  @Field(() => Date, { description: 'date of created tithe' })
+  createdAt: Date;
 }

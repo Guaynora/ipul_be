@@ -4,12 +4,16 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
+import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter(),
   );
-  await app.listen(process.env.PORT ?? 3000, '0.0.0.0');
+  const port = process.env.PORT ?? 3000;
+  const host = '0.0.0.0';
+  await app.listen(port, host);
+  Logger.log(`🚀 Application is running on: http://localhost:${port}`);
 }
 bootstrap();

@@ -8,7 +8,7 @@ export class CreateTitheInput {
   @IsNumber()
   amount: number;
 
-  @Field(() => Date, { description: 'date of tithe' })
+  @Field(() => String, { description: 'date of tithe' })
   @IsNotEmpty()
-  date: Date;
+  date: string;
 }

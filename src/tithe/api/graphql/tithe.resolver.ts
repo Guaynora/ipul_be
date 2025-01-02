@@ -2,33 +2,49 @@ import { Resolver, Query, Mutation, Args, ID } from '@nestjs/graphql';
 import { Tithe } from '../../domain';
 import { TitheService } from '../../application/services';
 import { CreateTitheInput, UpdateTitheInput } from '../../application/dto';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { CreateTitheCommand } from 'src/tithe/application/command/create-tithe/create-tithe.command';
+import { GetTithesQuery } from 'src/tithe/application/queries/get-tithes/get-tithes.query';
 
 @Resolver(() => Tithe)
 export class TitheResolver {
-  constructor(private readonly titheService: TitheService) {}
+  constructor(
+    private readonly titheService: TitheService,
+    private readonly commandBus: CommandBus,
+    private readonly queryBus: QueryBus,
+  ) {}
 
-  @Query(() => [Tithe], { name: 'tithe' })
-  findAll() {
-    return this.titheService.findAll();
+  @Query(() => [Tithe], { name: 'tithes' })
+  async findAll() {
+    return await this.queryBus.execute(new GetTithesQuery());
   }
 
   @Query(() => Tithe, { name: 'tithe' })
-  findOne(@Args('id', { type: () => ID }) id: string) {
+  async findOne(@Args('id', { type: () => ID }) id: string) {
     return this.titheService.findOne(id);
   }
 
   @Mutation(() => Tithe)
-  createTithe(@Args('createTitheInput') createTitheInput: CreateTitheInput) {
-    return this.titheService.create(createTitheInput);
+  async createTithe(
+    @Args('createTitheInput') createTitheInput: CreateTitheInput,
+  ) {
+    return await this.commandBus.execute(
+      new CreateTitheCommand(createTitheInput),
+    );
   }
 
   @Mutation(() => Tithe)
-  updateTithe(@Args('updateTitheInput') updateTitheInput: UpdateTitheInput) {
-    return this.titheService.update(updateTitheInput.id, updateTitheInput);
+  async updateTithe(
+    @Args('updateTitheInput') updateTitheInput: UpdateTitheInput,
+  ) {
+    return await this.titheService.update(
+      updateTitheInput.id,
+      updateTitheInput,
+    );
   }
 
   @Mutation(() => Tithe)
-  removeTithe(@Args('id', { type: () => ID }) id: string) {
-    return this.titheService.remove(id);
+  async removeTithe(@Args('id', { type: () => ID }) id: string) {
+    return await this.titheService.remove(id);
   }
 }

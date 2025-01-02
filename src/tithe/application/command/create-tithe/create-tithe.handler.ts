@@ -7,6 +7,6 @@ export class CreateTitheHandler implements ICommandHandler<CreateTitheCommand> {
   constructor(private readonly titheService: TitheService) {}
 
   async execute(command: CreateTitheCommand) {
-    this.titheService.create(command.tithe);
+    return this.titheService.create(command.tithe);
   }
 }

@@ -1,5 +1,5 @@
-import { Tithe } from '../../../domain';
+import { CreateTitheInput } from '../../dto';
 
 export class CreateTitheCommand {
-  constructor(public readonly tithe: Tithe) {}
+  constructor(public readonly tithe: CreateTitheInput) {}
 }
