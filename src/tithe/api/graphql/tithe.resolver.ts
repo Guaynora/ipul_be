@@ -3,8 +3,8 @@ import { Tithe } from '../../domain';
 import { TitheService } from '../../application/services';
 import { CreateTitheInput, UpdateTitheInput } from '../../application/dto';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { CreateTitheCommand } from 'src/tithe/application/command/create-tithe/create-tithe.command';
-import { GetTithesQuery } from 'src/tithe/application/queries/get-tithes/get-tithes.query';
+import { GetTithesQuery } from '../../application/queries';
+import { CreateTitheCommand } from '../../application/command';
 
 @Resolver(() => Tithe)
 export class TitheResolver {
