@@ -45,7 +45,18 @@ export class TitheService {
   }
 
   async update(id: string, updateTitheInput: UpdateTitheInput) {
-    return `This action updates a #${id} tithe`;
+    const tithe = await this.titheRepository.preload({
+      id,
+      ...updateTitheInput,
+    });
+    if (!tithe) {
+      throw new NotFoundException(`Tithe with id ${id} not found`);
+    }
+    try {
+      return await this.titheRepository.save(tithe);
+    } catch (error) {
+      this.handleDBException(error);
+    }
   }
 
   async remove(id: string) {
