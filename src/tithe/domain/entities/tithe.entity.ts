@@ -8,11 +8,11 @@ export class Tithe {
   @Field(() => ID, { description: 'id of tithe' })
   id: string;
 
-  @Column({ type: 'float' })
+  @Column({ type: 'float', default: 0, nullable: false })
   @Field(() => Float, { description: 'amount of tithe' })
   amount: number;
 
-  @Column()
+  @Column('text')
   @Field(() => String, { description: 'date of tithe' })
   date: string;
 

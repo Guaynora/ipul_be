@@ -8,11 +8,11 @@ export class Committee {
   @Field(() => ID, { description: 'id of committee' })
   id: string;
 
-  @Column()
+  @Column({ type: 'text', nullable: false })
   @Field(() => String, { description: 'name of committee' })
   name: string;
 
-  @Column()
+  @Column('text')
   @Field(() => String, { description: 'description of committee' })
   description: string;
 
