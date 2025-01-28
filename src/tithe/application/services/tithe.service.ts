@@ -2,6 +2,7 @@ import {
   Injectable,
   InternalServerErrorException,
   Logger,
+  NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Tithe } from 'src/tithe/domain';
@@ -26,6 +27,7 @@ export class TitheService {
     }
   }
 
+  // TODO: pagination
   async findAll(): Promise<Tithe[]> {
     try {
       return await this.titheRepository.find();
@@ -35,7 +37,11 @@ export class TitheService {
   }
 
   async findOne(id: string): Promise<Tithe> {
-    return this.titheRepository.findOne({ where: { id } });
+    const tithe = await this.titheRepository.findOneBy({ id });
+    if (!tithe) {
+      throw new NotFoundException(`Tithe with id ${id} not found`);
+    }
+    return tithe;
   }
 
   async update(id: string, updateTitheInput: UpdateTitheInput) {
