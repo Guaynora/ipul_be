@@ -1,10 +1,13 @@
-import { Resolver, Query, Mutation, Args, ID } from '@nestjs/graphql';
-import { Tithe } from '../../domain';
-import { TitheService } from '../../application/services';
-import { CreateTitheInput, UpdateTitheInput } from '../../application/dto';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { GetTithesQuery } from '../../application/queries';
-import { CreateTitheCommand } from '../../application/command';
+import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
+import {
+  CreateTitheCommand,
+  UpdateTitheCommand,
+} from '../../application/command';
+import { CreateTitheInput, UpdateTitheInput } from '../../application/dto';
+import { GetTitheQuery, GetTithesQuery } from '../../application/queries';
+import { TitheService } from '../../application/services';
+import { Tithe } from '../../domain';
 
 @Resolver(() => Tithe)
 export class TitheResolver {
@@ -21,7 +24,7 @@ export class TitheResolver {
 
   @Query(() => Tithe, { name: 'tithe' })
   async findOne(@Args('id', { type: () => ID }) id: string) {
-    return this.titheService.findOne(id);
+    return await this.queryBus.execute(new GetTitheQuery(id));
   }
 
   @Mutation(() => Tithe)
@@ -37,9 +40,8 @@ export class TitheResolver {
   async updateTithe(
     @Args('updateTitheInput') updateTitheInput: UpdateTitheInput,
   ) {
-    return await this.titheService.update(
-      updateTitheInput.id,
-      updateTitheInput,
+    return await this.commandBus.execute(
+      new UpdateTitheCommand(updateTitheInput.id, updateTitheInput),
     );
   }
 

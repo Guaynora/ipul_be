@@ -1,6 +1,6 @@
 import { CommandHandler } from '@nestjs/cqrs';
-import { UpdateTitheCommand } from './update-tithe.command';
 import { TitheService } from '../../services';
+import { UpdateTitheCommand } from './update-tithe.command';
 
 @CommandHandler(UpdateTitheCommand)
 export class UpdateTitheHandler {

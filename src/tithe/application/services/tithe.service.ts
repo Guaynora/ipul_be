@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { CreateTitheInput, UpdateTitheInput } from '../dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Tithe } from 'src/tithe/domain';
 import { Repository } from 'typeorm';
+import { CreateTitheInput, UpdateTitheInput } from '../dto';
 
 @Injectable()
 export class TitheService {

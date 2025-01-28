@@ -1,12 +1,18 @@
-import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { Committee } from '../../domain';
-import { CreateCommitteeInput } from '../../application/dto';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
 import {
-  GetCommitteesQuery,
+  CreateCommitteeCommand,
+  UpdateCommitteeCommand,
+} from '../../application/command';
+import {
+  CreateCommitteeInput,
+  UpdateCommitteeInput,
+} from '../../application/dto';
+import {
   GetCommitteeQuery,
+  GetCommitteesQuery,
 } from '../../application/queries';
-import { CreateCommitteeCommand } from 'src/committee/application/command';
+import { Committee } from '../../domain';
 
 @Resolver(() => Committee)
 export class CommitteeResolver {
@@ -31,6 +37,15 @@ export class CommitteeResolver {
   ) {
     return await this.commandBus.execute(
       new CreateCommitteeCommand(createCommitteeInput),
+    );
+  }
+
+  @Mutation(() => Committee)
+  async updateCommittee(
+    @Args('updateCommitteeInput') updateCommitteeInput: UpdateCommitteeInput,
+  ) {
+    return await this.commandBus.execute(
+      new UpdateCommitteeCommand(updateCommitteeInput.id, updateCommitteeInput),
     );
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Committee } from '../../domain';
 import { Repository } from 'typeorm';
+import { Committee } from '../../domain';
 import { CreateCommitteeInput, UpdateCommitteeInput } from '../dto';
 
 @Injectable()

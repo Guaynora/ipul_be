@@ -1,9 +1,9 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { CreateCommitteeCommand } from './create-committee.command';
 import { CommitteeService } from '../../services/committee.service';
+import { CreateCommitteeCommand } from './create-committee.command';
 
 @CommandHandler(CreateCommitteeCommand)
-export class CreateTitheHandler
+export class CreateCommitteeHandler
   implements ICommandHandler<CreateCommitteeCommand>
 {
   constructor(private readonly titheService: CommitteeService) {}

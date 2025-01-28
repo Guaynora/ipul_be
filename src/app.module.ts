@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MercuriusDriver, MercuriusDriverConfig } from '@nestjs/mercurius';
-import { TitheModule } from './tithe/tithe.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule } from '@nestjs/config';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { CommitteeModule } from './committee/Committee.module';
+import { TitheModule } from './tithe/tithe.module';
 
 const env = process.env;
 
@@ -28,6 +29,7 @@ const env = process.env;
       autoLoadEntities: true,
     }),
     TitheModule,
+    CommitteeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

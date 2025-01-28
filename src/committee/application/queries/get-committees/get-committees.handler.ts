@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { GetCommitteesQuery } from './get-committees.query';
-import { CommitteeService } from '../../services/committee.service';
 import { Committee } from '../../../domain';
+import { CommitteeService } from '../../services/committee.service';
+import { GetCommitteesQuery } from './get-committees.query';
 
 @QueryHandler(GetCommitteesQuery)
 export class GetCommitteesQueryHandler

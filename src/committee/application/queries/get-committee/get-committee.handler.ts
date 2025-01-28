@@ -1,15 +1,15 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { GetCommitteeQuery } from './get-committee.query';
-import { CommitteeService } from '../../services/committee.service';
 import { Committee } from '../../../domain';
+import { CommitteeService } from '../../services/committee.service';
+import { GetCommitteeQuery } from './get-committee.query';
 
 @QueryHandler(GetCommitteeQuery)
-export class GetByIdCommitteeQueryHandler
+export class GetCommitteeQueryHandler
   implements IQueryHandler<GetCommitteeQuery>
 {
-  constructor(private readonly getCommitteesQuery: CommitteeService) {}
+  constructor(private readonly getCommitteeService: CommitteeService) {}
 
   async execute(query: GetCommitteeQuery): Promise<Committee> {
-    return this.getCommitteesQuery.findOne(query.id);
+    return this.getCommitteeService.findOne(query.id);
   }
 }
