@@ -12,9 +12,10 @@ import {
 } from './application/queries';
 import { OfferingService } from './application/services';
 import { Offering } from './domain';
+import { CommitteeModule } from '../committee/Committee.module';
 
 @Module({
-  imports: [CqrsModule, TypeOrmModule.forFeature([Offering])],
+  imports: [CqrsModule, TypeOrmModule.forFeature([Offering]), CommitteeModule],
   providers: [
     OfferingResolver,
     OfferingService,

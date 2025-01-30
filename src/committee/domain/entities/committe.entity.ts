@@ -1,5 +1,6 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Offering } from '../../../offering/domain';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'committee' })
 @ObjectType()
@@ -22,4 +23,7 @@ export class Committee {
   })
   @Field(() => Date, { description: 'date of created committee' })
   createdAt: Date;
+
+  @OneToMany(() => Offering, (offering) => offering.committee)
+  offerings: Offering[];
 }

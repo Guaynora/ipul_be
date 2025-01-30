@@ -23,5 +23,6 @@ import { Committee } from './domain';
     GetCommitteeQueryHandler,
     GetCommitteesQueryHandler,
   ],
+  exports: [TypeOrmModule],
 })
 export class CommitteeModule {}

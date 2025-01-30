@@ -1,5 +1,6 @@
 import { Field, Float, ID, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Committee } from '../../../committee/domain';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'offering' })
 @ObjectType()
@@ -12,14 +13,20 @@ export class Offering {
     type: 'timestamp with time zone',
     default: () => 'CURRENT_TIMESTAMP',
   })
-  @Field(() => Date, { description: 'date of created committee' })
+  @Field(() => Date, { description: 'date of created offering' })
   createdAt: Date;
 
   @Column({ type: 'float', default: 0, nullable: false })
-  @Field(() => Float, { description: 'amount of tithe' })
+  @Field(() => Float, { description: 'amount of offering' })
   amount: number;
 
   @Column('text')
-  @Field(() => String, { description: 'date of tithe' })
+  @Field(() => String, { description: 'date of offering' })
   date: string;
+
+  @ManyToOne(() => Committee, (committee) => committee.offerings, {
+    nullable: true,
+  })
+  @Field(() => Committee, { description: 'Committee related to the offering' })
+  committee: Committee;
 }
