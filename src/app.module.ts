@@ -7,6 +7,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CommitteeModule } from './committee/Committee.module';
 import { TitheModule } from './tithe/tithe.module';
+import { OfferingModule } from './offering/offering.module';
 
 const env = process.env;
 
@@ -30,6 +31,7 @@ const env = process.env;
     }),
     TitheModule,
     CommitteeModule,
+    OfferingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
