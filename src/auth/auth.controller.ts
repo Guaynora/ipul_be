@@ -1,15 +1,11 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { CreateUserCommand } from '../../application/command';
-import { CreateUserDto, LoginUserDto } from '../../application/dto';
-import { LoginUserCommand } from 'src/auth/application/command/login/login-user.command';
+import { CommandBus } from '@nestjs/cqrs';
+import { CreateUserCommand, LoginUserCommand } from './command/impl';
+import { CreateUserDto, LoginUserDto } from './dto';
 
 @Controller('auth')
 export class AuthController {
-  constructor(
-    private readonly commandBus: CommandBus,
-    private readonly queryBus: QueryBus,
-  ) {}
+  constructor(private readonly commandBus: CommandBus) {}
 
   @Post('register')
   create(@Body() createUserDto: CreateUserDto) {
