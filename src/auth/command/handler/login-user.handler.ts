@@ -3,15 +3,15 @@ import { CommandHandler } from '@nestjs/cqrs';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { AuthService } from 'src/auth/auth.service';
-import { UserEntity } from 'src/auth/entities/user.entity';
+import { User } from 'src/auth/entities/user.entity';
 import { Repository } from 'typeorm';
 import { LoginUserCommand } from '../impl';
 
 @CommandHandler(LoginUserCommand)
 export class LoginUserHandler {
   constructor(
-    @InjectRepository(UserEntity)
-    private readonly userRepository: Repository<UserEntity>,
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
     private readonly authService: AuthService,
   ) {}
 

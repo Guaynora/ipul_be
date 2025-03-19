@@ -6,7 +6,7 @@ import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CreateUserHandler, LoginUserHandler } from './command/handler';
 import { AuthController } from './auth.controller';
-import { UserEntity } from './entities/user.entity';
+import { User } from './entities/user.entity';
 import { AuthService } from './auth.service';
 
 @Module({
@@ -14,7 +14,7 @@ import { AuthService } from './auth.service';
   providers: [CreateUserHandler, LoginUserHandler, AuthService],
   imports: [
     CqrsModule,
-    TypeOrmModule.forFeature([UserEntity]),
+    TypeOrmModule.forFeature([User]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync({
       imports: [ConfigModule],
