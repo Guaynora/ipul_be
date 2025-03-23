@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CommitteeResolver } from './api/graphql/committee.resolver';
 import {
   CreateCommitteeHandler,
   UpdateCommitteeHandler,
-} from './application/command';
+} from './command/handler';
+import { CommitteeResolver } from './committee.resolver';
+import { CommitteeService } from './committee.service';
+import { Committee } from './entities';
 import {
   GetCommitteeQueryHandler,
   GetCommitteesQueryHandler,
-} from './application/queries';
-import { CommitteeService } from './application/services';
-import { Committee } from './domain';
+} from './query/handler';
 
 @Module({
   imports: [CqrsModule, TypeOrmModule.forFeature([Committee])],
@@ -23,6 +23,5 @@ import { Committee } from './domain';
     GetCommitteeQueryHandler,
     GetCommitteesQueryHandler,
   ],
-  exports: [TypeOrmModule],
 })
 export class CommitteeModule {}

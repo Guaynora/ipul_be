@@ -1,18 +1,9 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
-import {
-  CreateCommitteeCommand,
-  UpdateCommitteeCommand,
-} from '../../application/command';
-import {
-  CreateCommitteeInput,
-  UpdateCommitteeInput,
-} from '../../application/dto';
-import {
-  GetCommitteeQuery,
-  GetCommitteesQuery,
-} from '../../application/queries';
-import { Committee } from '../../domain';
+import { CreateCommitteeCommand, UpdateCommitteeCommand } from './command/impl';
+import { CreateCommitteeInput, UpdateCommitteeInput } from './dto';
+import { Committee } from './entities';
+import { GetCommitteeQuery, GetCommitteesQuery } from './query/impl';
 
 @Resolver(() => Committee)
 export class CommitteeResolver {

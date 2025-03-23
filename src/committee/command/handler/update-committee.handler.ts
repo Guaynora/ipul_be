@@ -1,6 +1,6 @@
 import { CommandHandler } from '@nestjs/cqrs';
-import { CommitteeService } from '../../services';
-import { UpdateCommitteeCommand } from './update-committee.command';
+import { UpdateCommitteeCommand } from '../impl';
+import { CommitteeService } from '../../committee.service';
 
 @CommandHandler(UpdateCommitteeCommand)
 export class UpdateCommitteeHandler {

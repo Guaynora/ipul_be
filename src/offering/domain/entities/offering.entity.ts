@@ -1,5 +1,5 @@
 import { Field, Float, ID, ObjectType } from '@nestjs/graphql';
-import { Committee } from '../../../committee/domain';
+import { Committee } from '../../../committee/entities';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'offering' })
