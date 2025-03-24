@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { CreateOfferingCommand } from './create-offering.command';
-import { OfferingService } from '../../services';
+import { CreateOfferingCommand } from '../impl/create-offering.command';
+import { OfferingService } from '../../offering.service';
 
 @CommandHandler(CreateOfferingCommand)
 export class CreateOfferingHandler

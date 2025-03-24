@@ -1,6 +1,6 @@
 import { CommandHandler } from '@nestjs/cqrs';
-import { OfferingService } from '../../services';
-import { UpdateOfferingCommand } from './update-offering.command';
+import { OfferingService } from '../../offering.service';
+import { UpdateOfferingCommand } from '../impl/update-offering.command';
 
 @CommandHandler(UpdateOfferingCommand)
 export class UpdateOfferingHandler {

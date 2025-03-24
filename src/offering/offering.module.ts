@@ -1,18 +1,18 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { OfferingResolver } from './api/graphql';
+import { CommitteeModule } from '../committee/Committee.module';
 import {
   CreateOfferingHandler,
   UpdateOfferingHandler,
-} from './application/command';
+} from './command/handler';
+import { Offering } from './entities';
+import { OfferingResolver } from './offering.resolver';
+import { OfferingService } from './offering.service';
 import {
   GetOfferingQueryHandler,
   GetOfferingsQueryHandler,
-} from './application/queries';
-import { OfferingService } from './application/services';
-import { Offering } from './domain';
-import { CommitteeModule } from '../committee/Committee.module';
+} from './queries/handler';
 
 @Module({
   imports: [CqrsModule, TypeOrmModule.forFeature([Offering]), CommitteeModule],

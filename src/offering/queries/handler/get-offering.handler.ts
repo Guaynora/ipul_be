@@ -1,7 +1,7 @@
 import { QueryHandler } from '@nestjs/cqrs';
-import { Offering } from '../../../domain';
-import { OfferingService } from '../../services';
-import { GetOfferingQuery } from './get-offering.query';
+import { Offering } from '../../entities';
+import { OfferingService } from '../../offering.service';
+import { GetOfferingQuery } from '../impl';
 
 @QueryHandler(GetOfferingQuery)
 export class GetOfferingQueryHandler {

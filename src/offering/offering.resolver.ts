@@ -1,15 +1,9 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { Offering } from '../../domain';
-import { GetOfferingQuery, GetOfferingsQuery } from '../../application/queries';
-import {
-  CreateOfferingInput,
-  UpdateOfferingInput,
-} from '../../application/dto';
-import {
-  CreateOfferingCommand,
-  UpdateOfferingCommand,
-} from 'src/offering/application/command';
+import { CreateOfferingCommand, UpdateOfferingCommand } from './command/impl';
+import { CreateOfferingInput, UpdateOfferingInput } from './dto';
+import { Offering } from './entities';
+import { GetOfferingQuery, GetOfferingsQuery } from './queries/impl';
 
 @Resolver()
 export class OfferingResolver {

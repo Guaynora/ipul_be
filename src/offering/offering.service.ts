@@ -5,9 +5,9 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Offering } from 'src/offering/domain';
 import { Repository } from 'typeorm';
-import { CreateOfferingInput, UpdateOfferingInput } from '../dto';
+import { CreateOfferingInput, UpdateOfferingInput } from './dto';
+import { Offering } from './entities';
 
 @Injectable()
 export class OfferingService {
