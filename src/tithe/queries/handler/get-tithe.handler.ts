@@ -1,7 +1,7 @@
 import { QueryHandler } from '@nestjs/cqrs';
-import { Tithe } from 'src/tithe/domain';
-import { TitheService } from '../../services';
-import { GetTitheQuery } from './get-tithe.query';
+import { Tithe } from '../../entities';
+import { TitheService } from '../../tithe.service';
+import { GetTitheQuery } from '../impl/get-tithe.query';
 
 @QueryHandler(GetTitheQuery)
 export class GetTitheQueryHandler {

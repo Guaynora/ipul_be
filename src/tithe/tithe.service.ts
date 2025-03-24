@@ -5,9 +5,9 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Tithe } from 'src/tithe/domain';
 import { Repository } from 'typeorm';
-import { CreateTitheInput, UpdateTitheInput } from '../dto';
+import { CreateTitheInput, UpdateTitheInput } from './dto';
+import { Tithe } from './entities';
 
 @Injectable()
 export class TitheService {

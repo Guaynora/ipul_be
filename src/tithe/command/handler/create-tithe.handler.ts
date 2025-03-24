@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { TitheService } from '../../services';
-import { CreateTitheCommand } from './create-tithe.command';
+import { TitheService } from '../../tithe.service';
+import { CreateTitheCommand } from '../impl/create-tithe.command';
 
 @CommandHandler(CreateTitheCommand)
 export class CreateTitheHandler implements ICommandHandler<CreateTitheCommand> {

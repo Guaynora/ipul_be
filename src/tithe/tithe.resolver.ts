@@ -1,13 +1,10 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
-import {
-  CreateTitheCommand,
-  UpdateTitheCommand,
-} from '../../application/command';
-import { CreateTitheInput, UpdateTitheInput } from '../../application/dto';
-import { GetTitheQuery, GetTithesQuery } from '../../application/queries';
-import { TitheService } from '../../application/services';
-import { Tithe } from '../../domain';
+import { CreateTitheCommand, UpdateTitheCommand } from './command/impl';
+import { CreateTitheInput, UpdateTitheInput } from './dto';
+import { Tithe } from './entities';
+import { GetTitheQuery, GetTithesQuery } from './queries/impl';
+import { TitheService } from './tithe.service';
 
 @Resolver(() => Tithe)
 export class TitheResolver {

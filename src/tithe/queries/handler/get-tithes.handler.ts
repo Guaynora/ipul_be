@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { Tithe } from '../../../domain';
-import { TitheService } from '../../services';
-import { GetTithesQuery } from './get-tithes.query';
+import { Tithe } from '../../entities';
+import { TitheService } from '../../tithe.service';
+import { GetTithesQuery } from '../impl/get-tithes.query';
 
 @QueryHandler(GetTithesQuery)
 export class GetTithesQueryHandler implements IQueryHandler<GetTithesQuery> {

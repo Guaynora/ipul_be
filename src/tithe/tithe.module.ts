@@ -1,14 +1,11 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TitheResolver } from './api/graphql';
-import { CreateTitheHandler, UpdateTitheHandler } from './application/command';
-import {
-  GetTitheQueryHandler,
-  GetTithesQueryHandler,
-} from './application/queries';
-import { TitheService } from './application/services';
-import { Tithe } from './domain';
+import { CreateTitheHandler, UpdateTitheHandler } from './command/handler';
+import { Tithe } from './entities';
+import { GetTitheQueryHandler, GetTithesQueryHandler } from './queries/handler';
+import { TitheResolver } from './tithe.resolver';
+import { TitheService } from './tithe.service';
 
 @Module({
   imports: [CqrsModule, TypeOrmModule.forFeature([Tithe])],

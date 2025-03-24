@@ -1,2 +1,2 @@
 export * from './create-tithe.handler';
-export * from './create-tithe.command';
+export * from './update-tithe.handler';
